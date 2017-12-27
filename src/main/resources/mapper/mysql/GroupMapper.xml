@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nemustech.indoornow.mapper.GroupMapper">
+	<select id="list" resultType="V3_GROUP">
+<!-- 		<include refid="com.nemustech.common.mapper.CommonMapper.page_top" /> -->
+
+		<![CDATA[
+SELECT
+		]]>
+
+		<if test="hint != null">
+			<![CDATA[
+${hint}
+			]]>
+		</if>
+
+		<if test="fields == null">
+			<![CDATA[
+id id,name name,parent_group_id parent_group_id
+			]]>
+		</if>
+		<if test="fields != null">
+			<![CDATA[
+${fields}
+			]]>
+		</if>
+
+<!-- 		<include refid="com.nemustech.common.mapper.CommonMapper.page_middle" /> -->
+
+		<![CDATA[
+  FROM V3_GROUP
+		]]>
+
+		<where>
+			<if test="condition != null">
+				<![CDATA[
+   AND ${condition}
+				]]>
+			</if>
+
+			<if test="id != null">
+				<![CDATA[
+   AND id = #{id}
+				]]>
+			</if>
+			<if test="name != null">
+				<![CDATA[
+   AND name = #{name}
+				]]>
+			</if>
+			<if test="parent_group_id != null">
+				<![CDATA[
+   AND parent_group_id = #{parent_group_id}
+				]]>
+			</if>
+		</where>
+
+		<if test="having != null">
+			<![CDATA[
+HAVING ${having}
+			]]>
+		</if>
+
+		<if test="group_by != null">
+			<![CDATA[
+GROUP BY ${group_by}
+			]]>
+		</if>
+
+		<if test="order_by != null">
+			<![CDATA[
+ORDER BY ${order_by}
+			]]>
+		</if>
+
+<!-- 		<include refid="com.nemustech.common.mapper.CommonMapper.page_bottom" /> -->
+	</select>
+
+	<select id="count" parameterType="V3_GROUP" resultType="java.lang.Integer">
+		<include refid="com.nemustech.common.mapper.CommonMapper.count_top" />
+
+		<![CDATA[
+  FROM V3_GROUP
+		]]>
+
+		<where>
+			<if test="condition != null">
+				<![CDATA[
+   AND ${condition}
+				]]>
+			</if>
+
+			<if test="id != null">
+				<![CDATA[
+   AND id = #{id}
+				]]>
+			</if>
+			<if test="name != null">
+				<![CDATA[
+   AND name = #{name}
+				]]>
+			</if>
+			<if test="parent_group_id != null">
+				<![CDATA[
+   AND parent_group_id = #{parent_group_id}
+				]]>
+			</if>
+		</where>
+	</select>
+
+	<insert id="insert" parameterType="V3_GROUP">
+		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+			<![CDATA[
+SELECT .NEXTVAL AS 
+  FROM dual
+			]]>
+		</selectKey>
+
+		<![CDATA[
+INSERT INTO V3_GROUP (
+		]]>
+
+		<trim prefixOverrides=",">
+			<if test="id != null">
+				<![CDATA[
+, id
+				]]>
+			</if>
+			<if test="name != null">
+				<![CDATA[
+, name
+				]]>
+			</if>
+			<if test="parent_group_id != null">
+				<![CDATA[
+, parent_group_id
+				]]>
+			</if>
+		</trim>
+
+		<![CDATA[
+) VALUES (
+		]]>
+
+		<trim prefixOverrides=",">
+			<if test="id != null">
+				<![CDATA[
+, #{id}
+				]]>
+			</if>
+			<if test="name != null">
+				<![CDATA[
+, #{name}
+				]]>
+			</if>
+			<if test="parent_group_id != null">
+				<![CDATA[
+, #{parent_group_id}
+				]]>
+			</if>
+		</trim>
+
+		<![CDATA[
+)
+		]]>
+	</insert>
+
+	<update id="update" parameterType="V3_GROUP">
+		<![CDATA[
+UPDATE V3_GROUP
+		]]>
+
+		<set>
+			<if test="name != null">
+				<![CDATA[
+name = #{name},
+				]]>
+			</if>
+			<if test="parent_group_id != null">
+				<![CDATA[
+parent_group_id = #{parent_group_id},
+				]]>
+			</if>
+		</set>
+
+		<where>
+			<if test="id != null">
+				<![CDATA[
+   AND id = #{id}
+				]]>
+			</if>
+
+			<if test="condition != null">
+				<![CDATA[
+   AND ${condition}
+				]]>
+			</if>
+		</where>
+	</update>
+
+	<delete id="delete" parameterType="V3_GROUP">
+		<![CDATA[
+DELETE FROM V3_GROUP
+		]]>
+
+		<where>
+			<if test="condition != null">
+				<![CDATA[
+   AND ${condition}
+				]]>
+			</if>
+
+			<if test="id != null">
+				<![CDATA[
+   AND id = #{id}
+				]]>
+			</if>
+			<if test="name != null">
+				<![CDATA[
+   AND name = #{name}
+				]]>
+			</if>
+			<if test="parent_group_id != null">
+				<![CDATA[
+   AND parent_group_id = #{parent_group_id}
+				]]>
+			</if>
+		</where>
+	</delete>
+</mapper>

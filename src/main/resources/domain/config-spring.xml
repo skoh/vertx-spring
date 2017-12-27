@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
+	<!-- DataSource -->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<!-- <property name="url" value="jdbc:mysql://localhost:3306/xe?autoReconnect=true&amp;useSSL=false" /> -->
+		<!-- <property name="url" value="jdbc:mysql://112.217.207.164:23306/xe?autoReconnect=true&amp;useSSL=false" /> -->
+		<property name="url"
+			value="jdbc:mysql://112.217.207.164:23306/INDOORNOW-V3-SP2-SAMPLE?autoReconnect=true&amp;useSSL=false" />
+		<!-- <property name="driverClassName" value="oracle.jdbc.OracleDriver" /> -->
+		<!-- <property name="url" value="jdbc:oracle:thin:@192.168.3.179:1521:xe" /> -->
+		<!-- <property name="url" value="jdbc:oracle:thin:@112.217.207.164:23389:orcl" /> -->
+		<!-- <property name="username" value="skoh" /> -->
+		<!-- <property name="password" value="skoh" /> -->
+		<property name="username" value="v3-sampler" />
+		<property name="password" value="v3-sampler" />
+		<property name="initialSize" value="5" />
+		<property name="maxTotal" value="10" />
+		<property name="maxIdle" value="5" />
+		<property name="minIdle" value="5" />
+		<property name="maxWaitMillis" value="30000" />
+		<property name="validationQuery" value="SELECT 1 from dual" />
+		<property name="testOnBorrow" value="true" />
+		<property name="testOnReturn" value="false" />
+		<property name="testWhileIdle" value="true" />
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<property name="removeAbandonedOnMaintenance" value="true" />
+		<property name="removeAbandonedTimeout" value="60" />
+		<property name="logAbandoned" value="true" />
+	</bean>
+
+	<!-- Package -->
+	<context:component-scan base-package="com.nemustech.indoornow" />
+
+	<!-- Properties -->
+	<util:properties id="properties">
+		<prop key="dataSource.vendorType">mysql</prop>
+		<!-- <prop key="dataSource.vendorType">oracle</prop> -->
+		<prop key="mybatis.mapper.basePackage">com.nemustech.indoornow.mapper</prop>
+	</util:properties>
+
+</beans>

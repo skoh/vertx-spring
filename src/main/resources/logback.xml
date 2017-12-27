@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="true" scanPeriod="3 seconds">
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%-10.10t] %5p %-30.30c [%-30.30C{2}\(%-20.20M:%-5.5L\)] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="dailyFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/indoornow.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/indoornow.log.%d{yyyy-MM-dd}.%i.zip</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- 단위 : KB, MB, GB (생략시 Byte) -->
+				<!-- <maxFileSize>100MB</maxFileSize> -->
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<!-- 단위 : 개월 -->
+			<!-- <maxHistory>1</maxHistory> -->
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%-10.10t] %5p %-30.30c [%-30.30C{2}\(%-20.20M:%-5.5L\)] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.sun" level="info" />
+	<logger name="sun.rmi" level="info" />
+	<logger name="javax" level="info" />
+
+	<logger name="net.sf" level="info" />
+	<logger name="org.apache" level="info" />
+	<logger name="org.hibernate" level="info" />
+	<logger name="org.mybatis" level="info" />
+	<logger name="org.springframework" level="info" />
+	<!-- <logger name="org.springframework.aop" level="trace" /> -->
+	<!-- <logger name="org.springframework.beans" level="trace" /> -->
+	<!-- <logger name="org.springframework.cache" level="trace" /> -->
+	<!-- <logger name="org.springframework.context" level="trace" /> -->
+	<!-- <logger name="org.springframework.core" level="trace" /> -->
+	<!-- <logger name="org.springframework.web" level="trace" /> -->
+
+	<logger name="log4jdbc" level="off" />
+	<logger name="jdbc" level="off" />
+	<!-- <logger name="jdbc.audit" level="info" /> -->
+	<!-- <logger name="jdbc.resultset" level="info" /> -->
+<!-- 	<logger name="jdbc.sqlonly" level="info" /> -->
+	<logger name="jdbc.sqltiming" level="info" />
+	<logger name="jdbc.resultsettable" level="info" />
+
+	<logger name="java.sql" level="info" />
+	<logger name="org.mybatisorm" level="info" />
+	<logger name="org.mybatisorm.mapper" level="info" />
+
+	<logger name="com.nemustech" level="trace" />
+	<logger name="com.nemustech.indoornow" level="debug" />
+	<logger name="com.nemustech.indoornow.mapper" level="info" />
+
+	<root level="info">
+		<appender-ref ref="console" />
+		<!-- <appender-ref ref="dailyFile" /> -->
+	</root>
+</configuration>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+	xmlns:cache="http://www.springframework.org/schema/cache" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.2.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+	<import resource="classpath:domain/config-spring.xml" />
+
+	<!-- Poperties -->
+	<context:property-placeholder properties-ref="properties" />
+
+	<!-- Messages (id는 반드시 messageSource) -->
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames" value="classpath:messages/messages" />
+		<property name="cacheSeconds" value="3" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+
+	<bean id="log4jdbcProxyDataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+		<constructor-arg ref="dataSource" />
+		<property name="logFormatter">
+			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+				<property name="loggingType" value="MULTI_LINE" />
+				<property name="sqlPrefix" value="Binded SQL : " />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Transaction -->
+	<tx:annotation-driven proxy-target-class="true" />
+
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="log4jdbcProxyDataSource" />
+	</bean>
+
+	<!-- MyBatis -->
+	<!-- <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> -->
+	<bean id="sqlSessionFactory" class="com.nemustech.common.db.mybatis.RefreshableSqlSessionFactoryBean">
+		<property name="dataSource" ref="log4jdbcProxyDataSource" />
+		<property name="configLocation" value="classpath:config-mybatis.xml" />
+		<property name="mapperLocations" value="classpath:mapper/${dataSource.vendorType}/**/*.xml" />
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="#{properties['mybatis.mapper.basePackage']}" />
+	</bean>
+
+	<!-- MyBatis ORM (sourceType : mysql, oracle, sqlserver) -->
+	<bean class="org.mybatisorm.EntityManager">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+		<property name="sourceType" value="${dataSource.vendorType}" />
+	</bean>
+
+	<!-- RestTemplate -->
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject" value="#{@systemProperties}" />
+		<property name="targetMethod" value="putAll" />
+		<property name="arguments">
+			<props>
+				<prop key="http.maxConnections">100</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+		<constructor-arg>
+			<bean class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory">
+				<property name="connectTimeout" value="2000" />
+				<property name="readTimeout" value="600000" />
+			</bean>
+		</constructor-arg>
+	</bean>
+
+	<!-- AOP -->
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+
+	<!-- Logging -->
+	<bean id="logAdvice" class="com.nemustech.common.aop.LogAdvice" />
+
+	<aop:config>
+		<aop:pointcut id="publicMethod" expression="execution(public * com.nemustech..*Service.*(..))" />
+		<aop:aspect ref="logAdvice">
+			<aop:around method="around" pointcut-ref="publicMethod" />
+		</aop:aspect>
+	</aop:config>
+
+	<!-- Cache -->
+	<cache:annotation-driven proxy-target-class="true" />
+
+	<!-- Cache EHCache -->
+	<bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="shared" value="true" />
+		<property name="configLocation" value="classpath:ehcache.xml" />
+		<property name="cacheManagerName" value="nemustech-indoornow" />
+	</bean>
+
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="ehcache" />
+	</bean>
+
+	<!-- Task -->
+	<task:annotation-driven proxy-target-class="true" executor="executor" scheduler="scheduler" />
+
+	<task:executor id="executor" pool-size="10-100" queue-capacity="0" keep-alive="10" rejection-policy="CALLER_RUNS" />
+	<task:scheduler id="scheduler" pool-size="100" />
+
+	<!-- Common Package -->
+	<context:component-scan base-package="com.nemustech.common" />
+</beans>
