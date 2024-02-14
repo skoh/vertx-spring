@@ -1,4 +1,4 @@
-package com.nemustech.indoornow.common;
+package org.oh.common;
 
 import javax.annotation.PostConstruct;
 
@@ -11,7 +11,7 @@ import com.nemustech.web.util.WebApplicationContextUtil;
 
 /**
  * 설정
- * 
+ *
  * @author skoh
  */
 @Configuration

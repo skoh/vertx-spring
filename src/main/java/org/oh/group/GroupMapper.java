@@ -1,4 +1,4 @@
-package com.nemustech.indoornow.group;
+package org.oh.group;
 
 import org.springframework.stereotype.Repository;
 

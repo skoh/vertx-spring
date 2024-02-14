@@ -1,4 +1,4 @@
-package com.nemustech.indoornow.user;
+package org.oh.user;
 
 import org.mybatisorm.annotation.Column;
 import org.mybatisorm.annotation.Table;

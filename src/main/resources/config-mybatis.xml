@@ -7,8 +7,8 @@
 	</settings>
 
 	<typeAliases>
-		<typeAlias alias="V3_GROUP" type="com.nemustech.indoornow.group.Group" />
-		<typeAlias alias="V3_USER" type="com.nemustech.indoornow.user.User" />
+		<typeAlias alias="V3_GROUP" type="org.oh.group.Group" />
+		<typeAlias alias="V3_USER" type="org.oh.user.User" />
 	</typeAliases>
 
 	<plugins>

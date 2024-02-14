@@ -1,32 +1,32 @@
-package com.nemustech.indoornow;
+package org.oh;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.oh.common.Config;
+import org.oh.gateway.GatewayVerticle;
+import org.oh.user.UserVerticle;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.nemustech.indoornow.common.Config;
-import com.nemustech.indoornow.gateway.GatewayVerticle;
-import com.nemustech.indoornow.group.GroupVerticle;
-import com.nemustech.indoornow.user.UserVerticle;
+import org.oh.group.GroupVerticle;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
 
 /**
  * 배포 Verticle
- * 
+ *
  * <pre>
  * 1. 개발환경
  * - Vertx v3.3.3
  * - Spring Boot v1.4.2
  * - iBatis v3.1.1
- * 
+ *
  * - link : <a href="https://nemus-hi.atlassian.net/browse/INV3SER-23">nemus-hi.atlassian.net</a>
  * - lombok v1.16.12
  * - logback v1.1.7
  * - log4jdbc-remix v0.2.7
- * 
+ *
  * 2. 구조
  * Client <-http(s)-> GatewayVerticle <-eventBus-> GroupVerticle <-jdbc-> DB(MySQL,Oracle,MS-SQL)
  *                                    <-eventBus-> UserVerticle  <-jdbc-> DB

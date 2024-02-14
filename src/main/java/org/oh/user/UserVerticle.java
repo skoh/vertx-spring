@@ -1,8 +1,8 @@
-package com.nemustech.indoornow.user;
+package org.oh.user;
 
 import org.springframework.context.ApplicationContext;
 
-import com.nemustech.indoornow.common.AbstractCRUDVerticle;
+import org.oh.common.AbstractCRUDVerticle;
 
 /**
  * 사용자 Verticle

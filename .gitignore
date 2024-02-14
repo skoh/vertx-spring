@@ -1,6 +1,27 @@
-.classpath
+### Build ###
+bin/
+out/
+target/
+build/
+.gradle/
+.git/
+
+### AP ###
+db/
+files/
+logs/
+work/
+hazelcast-mc/
+*.pid
+
+### STS ###
+.settings/
 .project
-.settings
-.springBeans
-logs
-target
+.classpath
+.factorypath
+
+### IntelliJ ###
+.idea/
+*.iml
+*.ipr
+*.iws

@@ -1,19 +1,16 @@
-package com.nemustech.indoornow.user;
+package org.oh.user;
 
 import java.util.List;
 
 import org.junit.FixMethodOrder;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
+import org.oh.common.Config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.nemustech.common.util.JsonUtil2;
-import com.nemustech.indoornow.common.Config;
-import com.nemustech.indoornow.user.User;
-import com.nemustech.indoornow.user.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { Config.class })

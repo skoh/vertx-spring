@@ -1,4 +1,4 @@
-package com.nemustech.indoornow.common;
+package org.oh.common;
 
 import java.lang.reflect.ParameterizedType;
 import java.text.MessageFormat;
@@ -29,7 +29,7 @@ import io.vertx.core.shareddata.LocalMap;
 
 /**
  * 기본 CRUD 추상 Verticle
- * 
+ *
  * @param <T>
  * @author skoh
  */
@@ -68,7 +68,7 @@ public abstract class AbstractCRUDVerticle<T extends Default> extends AbstractVe
 
 	/**
 	 * MultiMap<Map.Entry<String, String>>을 Map<String, Object>으로 변환한다.
-	 * 
+	 *
 	 * @param multiMap
 	 * @return
 	 */
@@ -104,7 +104,7 @@ public abstract class AbstractCRUDVerticle<T extends Default> extends AbstractVe
 
 	/**
 	 * 캐시명
-	 * 
+	 *
 	 * @return null 은 캐시 사용 안함
 	 */
 	public String getCacheName() {
@@ -113,7 +113,7 @@ public abstract class AbstractCRUDVerticle<T extends Default> extends AbstractVe
 
 	/**
 	 * 캐시 사용여부
-	 * 
+	 *
 	 * @return
 	 */
 	public boolean isCacheable() {
@@ -122,7 +122,7 @@ public abstract class AbstractCRUDVerticle<T extends Default> extends AbstractVe
 
 	/**
 	 * 조회
-	 * 
+	 *
 	 * @return
 	 */
 	public Handler<Message<String>> get() {
@@ -151,7 +151,7 @@ public abstract class AbstractCRUDVerticle<T extends Default> extends AbstractVe
 
 	/**
 	 * 생성
-	 * 
+	 *
 	 * @return
 	 */
 	public Handler<Message<String>> post() {
@@ -168,7 +168,7 @@ public abstract class AbstractCRUDVerticle<T extends Default> extends AbstractVe
 
 	/**
 	 * 수정
-	 * 
+	 *
 	 * @return
 	 */
 	public Handler<Message<String>> put() {
@@ -186,7 +186,7 @@ public abstract class AbstractCRUDVerticle<T extends Default> extends AbstractVe
 
 	/**
 	 * 삭제
-	 * 
+	 *
 	 * @return
 	 */
 	public Handler<Message<String>> delete() {
@@ -203,7 +203,7 @@ public abstract class AbstractCRUDVerticle<T extends Default> extends AbstractVe
 
 	/**
 	 * 조회
-	 * 
+	 *
 	 * @param t 모델
 	 * @param msg 메세지
 	 * @param cacheKey 캐시키
@@ -227,7 +227,7 @@ public abstract class AbstractCRUDVerticle<T extends Default> extends AbstractVe
 
 	/**
 	 * 갱신
-	 * 
+	 *
 	 * @param t 모델
 	 * @param msg 메세지
 	 * @param service 서비스 함수
@@ -246,7 +246,7 @@ public abstract class AbstractCRUDVerticle<T extends Default> extends AbstractVe
 
 	/**
 	 * 비동기(워커 쓰레드)
-	 * 
+	 *
 	 * @param t 모델
 	 * @param service 서비스 함수
 	 * @param success 성공 함수

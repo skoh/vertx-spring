@@ -1,4 +1,4 @@
-package com.nemustech.indoornow.gateway;
+package org.oh.gateway;
 
 import java.text.MessageFormat;
 import java.util.Arrays;
@@ -8,10 +8,10 @@ import org.apache.commons.logging.LogFactory;
 
 import com.nemustech.common.util.BeanUtil;
 import com.nemustech.common.util.StringUtil;
-import com.nemustech.indoornow.group.Group;
-import com.nemustech.indoornow.group.GroupVerticle;
-import com.nemustech.indoornow.user.User;
-import com.nemustech.indoornow.user.UserVerticle;
+import org.oh.group.Group;
+import org.oh.group.GroupVerticle;
+import org.oh.user.User;
+import org.oh.user.UserVerticle;
 
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Vertx;
@@ -57,7 +57,7 @@ public class GroupUserRouting {
 
 	/**
 	 * 캐시명
-	 * 
+	 *
 	 * @return null 은 캐시 사용 안함
 	 */
 	public String getCacheName() {
@@ -66,7 +66,7 @@ public class GroupUserRouting {
 
 	/**
 	 * 캐시 사용여부
-	 * 
+	 *
 	 * @return
 	 */
 	public boolean isCacheable() {
@@ -75,7 +75,7 @@ public class GroupUserRouting {
 
 	/**
 	 * 조회
-	 * 
+	 *
 	 * @param routingContext
 	 */
 	public void post(RoutingContext routingContext) {

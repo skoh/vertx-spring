@@ -3,14 +3,14 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>io.vertx</groupId>
+	<groupId>org.oh</groupId>
 	<artifactId>vertx-spring</artifactId>
 	<version>1.0</version>
 	<name>vertx-spring</name>
 
 	<properties>
 		<!-- the main verticle class name -->
-		<main.class>com.nemustech.indoornow.DeployVerticle</main.class>
+		<main.class>org.oh.DeployVerticle</main.class>
 		<vertx.version>3.3.3</vertx.version>
 	</properties>
 
@@ -138,9 +138,11 @@
 			<artifactId>spring-context-support</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.nemustech.common</groupId>
+			<groupId>org.oh</groupId>
 			<artifactId>common-web</artifactId>
 			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/common-web-1.0.jar</systemPath>
 		</dependency>
 
 		<dependency>

@@ -1,11 +1,11 @@
-package com.nemustech.indoornow.gateway;
+package org.oh.gateway;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.oh.user.UserRouting;
 import org.springframework.context.ApplicationContext;
 
-import com.nemustech.indoornow.group.GroupRouting;
-import com.nemustech.indoornow.user.UserRouting;
+import org.oh.group.GroupRouting;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.ext.web.Router;
@@ -13,7 +13,7 @@ import io.vertx.ext.web.handler.BodyHandler;
 
 /**
  * Gateway Verticle
- * 
+ *
  * @author skoh
  */
 public class GatewayVerticle extends AbstractVerticle {

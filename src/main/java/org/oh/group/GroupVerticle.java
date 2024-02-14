@@ -1,8 +1,8 @@
-package com.nemustech.indoornow.group;
+package org.oh.group;
 
 import org.springframework.context.ApplicationContext;
 
-import com.nemustech.indoornow.common.AbstractCRUDVerticle;
+import org.oh.common.AbstractCRUDVerticle;
 
 /**
  * 부서 Verticle

@@ -1,4 +1,4 @@
-package com.nemustech.indoornow.common;
+package org.oh.common;
 
 import java.lang.reflect.ParameterizedType;
 import java.text.MessageFormat;
@@ -21,7 +21,7 @@ import io.vertx.ext.web.RoutingContext;
 
 /**
  * 기본 CRUD 추상 Routing
- * 
+ *
  * @author skoh
  */
 public abstract class AbstractCRUDRouting<T extends Default> {
@@ -62,14 +62,14 @@ public abstract class AbstractCRUDRouting<T extends Default> {
 
 	/**
 	 * Verticle명
-	 * 
+	 *
 	 * @return
 	 */
 	public abstract String getVerticleName();
 
 	/**
 	 * 캐시명
-	 * 
+	 *
 	 * @return null 은 캐시 사용 안함
 	 */
 	public String getCacheName() {
@@ -78,7 +78,7 @@ public abstract class AbstractCRUDRouting<T extends Default> {
 
 	/**
 	 * 캐시 사용여부
-	 * 
+	 *
 	 * @return
 	 */
 	public boolean isCacheable() {
@@ -87,7 +87,7 @@ public abstract class AbstractCRUDRouting<T extends Default> {
 
 	/**
 	 * 조회
-	 * 
+	 *
 	 * @param routingContext
 	 */
 	public void get(RoutingContext routingContext) {
@@ -106,7 +106,7 @@ public abstract class AbstractCRUDRouting<T extends Default> {
 
 	/**
 	 * 생성
-	 * 
+	 *
 	 * @param routingContext
 	 */
 	public void post(RoutingContext routingContext) {
@@ -124,7 +124,7 @@ public abstract class AbstractCRUDRouting<T extends Default> {
 
 	/**
 	 * 수정
-	 * 
+	 *
 	 * @param routingContext
 	 */
 	public void put(RoutingContext routingContext) {
@@ -142,7 +142,7 @@ public abstract class AbstractCRUDRouting<T extends Default> {
 
 	/**
 	 * 삭제
-	 * 
+	 *
 	 * @param routingContext
 	 */
 	public void delete(RoutingContext routingContext) {
@@ -161,7 +161,7 @@ public abstract class AbstractCRUDRouting<T extends Default> {
 
 	/**
 	 * 조회
-	 * 
+	 *
 	 * @param t 모델
 	 * @param res 응답
 	 * @param address 주소
@@ -186,7 +186,7 @@ public abstract class AbstractCRUDRouting<T extends Default> {
 
 	/**
 	 * 전송
-	 * 
+	 *
 	 * @param t 모델
 	 * @param res 응답
 	 * @param address 주소
@@ -208,7 +208,7 @@ public abstract class AbstractCRUDRouting<T extends Default> {
 
 	/**
 	 * 갱신
-	 * 
+	 *
 	 * @param t 모델
 	 * @param res 응답
 	 * @param address 주소

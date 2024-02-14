@@ -1,10 +1,9 @@
-package com.nemustech.indoornow.group;
+package org.oh.group;
 
 import org.mybatisorm.annotation.Column;
 import org.mybatisorm.annotation.Table;
 
 import com.nemustech.common.model.Default;
-import com.nemustech.indoornow.user.User;
 
 import lombok.Data;
 import lombok.ToString;

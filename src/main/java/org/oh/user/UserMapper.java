@@ -1,4 +1,4 @@
-package com.nemustech.indoornow.user;
+package org.oh.user;
 
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
-package com.nemustech.indoornow.user;
+package org.oh.user;
 
-import com.nemustech.indoornow.common.AbstractCRUDRouting;
+import org.oh.common.AbstractCRUDRouting;
 
 import io.vertx.core.Vertx;
 
